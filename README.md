@@ -1,2 +1,6 @@
 # PushNotification
-A MacOS app to send APNS Notifications
+A MacOS app used to send APNS Notifications
+
+
+
+![](./screenshot.gif)
