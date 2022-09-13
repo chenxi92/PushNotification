@@ -13,16 +13,19 @@ struct AboutMeView: View {
     var body: some View {
         VStack(spacing: 10) {
             Image(nsImage: NSImage(named: "AppIcon")!)
+                .padding()
             
             Text("\(Bundle.main.appName)")
                 .font(.title.bold())
             
             Text("Version: \(Bundle.main.appVersion) (\(Bundle.main.appBuildVersion)) ")
-                .font(.body)
+                .foregroundColor(.secondary)
             
-            Link("View Source Code", destination: repositoryURL)
-                .font(.caption)
+            Link("Source Code", destination: repositoryURL)
+            
+            Text(Bundle.main.copyright)
         }
+        .font(.body)
         .padding()
         .frame(minWidth: 300, maxWidth: 300)
     }

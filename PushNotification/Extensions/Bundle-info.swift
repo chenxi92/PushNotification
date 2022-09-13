@@ -15,8 +15,13 @@ extension Bundle {
     public var appBuildVersion: String {
         getInfo("CFBundleVersion")
     }
+    
     public var appVersion: String {
         getInfo("CFBundleShortVersionString")
+    }
+    
+    public var copyright: String {
+        getInfo("NSHumanReadableCopyright")
     }
     
     fileprivate func getInfo(_ key: String) -> String {
