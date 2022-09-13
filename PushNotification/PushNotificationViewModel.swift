@@ -188,8 +188,3 @@ class PushNotificationViewModel: ObservableObject {
     }
 }
 
-extension URL {
-    func fileName() -> String {
-        self.deletingPathExtension().lastPathComponent
-    }
-}
