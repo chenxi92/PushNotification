@@ -14,7 +14,6 @@
 		6C7A866928CAE1F00037EA36 /* PushNotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7A866828CAE1F00037EA36 /* PushNotificationViewModel.swift */; };
 		6C7A866B28CB17DF0037EA36 /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7A866A28CB17DF0037EA36 /* CustomButtonStyle.swift */; };
 		6C7A866D28CB18C90037EA36 /* Shell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7A866C28CB18C90037EA36 /* Shell.swift */; };
-		6C7A867728CB4A230037EA36 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7A867628CB4A230037EA36 /* AlertView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +26,6 @@
 		6C7A866828CAE1F00037EA36 /* PushNotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationViewModel.swift; sourceTree = "<group>"; };
 		6C7A866A28CB17DF0037EA36 /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
 		6C7A866C28CB18C90037EA36 /* Shell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shell.swift; sourceTree = "<group>"; };
-		6C7A867628CB4A230037EA36 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +61,6 @@
 				6C7A865928CAE1660037EA36 /* PushNotificationApp.swift */,
 				6C7A865B28CAE1660037EA36 /* ContentView.swift */,
 				6C7A866828CAE1F00037EA36 /* PushNotificationViewModel.swift */,
-				6C7A867628CB4A230037EA36 /* AlertView.swift */,
 				6C7A866A28CB17DF0037EA36 /* CustomButtonStyle.swift */,
 				6C7A866C28CB18C90037EA36 /* Shell.swift */,
 				6C7A865D28CAE1680037EA36 /* Assets.xcassets */,
@@ -156,7 +153,6 @@
 				6C7A866D28CB18C90037EA36 /* Shell.swift in Sources */,
 				6C7A866B28CB17DF0037EA36 /* CustomButtonStyle.swift in Sources */,
 				6C7A865A28CAE1660037EA36 /* PushNotificationApp.swift in Sources */,
-				6C7A867728CB4A230037EA36 /* AlertView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

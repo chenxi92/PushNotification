@@ -26,9 +26,15 @@ struct ContentView: View {
         }
         .padding()
         .frame(minWidth: 350, minHeight: 280)
-        .sheet(isPresented: $viewModel.isShowAlter) {
-            AlertView()
-        }
+        .alert(viewModel.alertTitle, isPresented: $viewModel.isShowAlter, actions: {
+            Button {
+                viewModel.reset()
+            } label: {
+                Text("Confirm")
+            }
+        }, message: {
+            Text(viewModel.alertMessage)
+        })
         .environmentObject(viewModel)
     }
 }

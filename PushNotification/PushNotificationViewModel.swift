@@ -13,17 +13,14 @@ class PushNotificationViewModel: ObservableObject {
     @Published var pushCertificateFilePath: String = ""
     @Published var pushPrivateKeyFilePath: String = ""
     @Published var privateKeyFilePassword: String = ""
-    @AppStorage("push_topic")
-    var topic: String = ""
-    @AppStorage("push_device")
-    var deviceToken: String = ""
+    @AppStorage("push_topic") var topic: String = ""
+    @AppStorage("push_device") var deviceToken: String = ""
     @Published var content: String = ""
     @Published var isSandbox: Bool = true
     
     @Published var isShowAlter: Bool = false
-    var title: String = ""
-    var successMessage: String = ""
-    var errorMessage: String = ""
+    private(set) var alertTitle: String = ""
+    private(set) var alertMessage: String = ""
     
     private var pemFilePath = ""
     
@@ -78,7 +75,7 @@ class PushNotificationViewModel: ObservableObject {
                 
                 if let errorMessage = errorMessage {
                     print("convert p12 file to pem occur error: \(errorMessage)")
-                    self.setupError(errorMessage)
+                    self.setupAlert(title: "Convert p12 file Fail", message: errorMessage)
                     return
                 }
                 
@@ -97,9 +94,8 @@ class PushNotificationViewModel: ObservableObject {
         pemFilePath = ""
         
         isShowAlter = false
-        title = ""
-        successMessage = ""
-        errorMessage = ""
+        alertTitle = ""
+        alertMessage = ""
     }
     
     // MARK: - Private function
@@ -136,11 +132,11 @@ curl -v \
         
         do {
             try ExecuteCommand(command: command)
-            setupSuccess("Send Notification Success")
+            self.setupAlert(title: "Success", message: "Send Notification Success")
         } catch let error as ShellError {
-            setupError(error.message)
+            self.setupAlert(title: "Fail", message: error.message)
         } catch {
-            setupError(error.localizedDescription)
+            self.setupAlert(title: "Fail", message: error.localizedDescription)
         }
     }
     
@@ -152,7 +148,7 @@ curl -v \
         
         let command = "openssl pkcs12 -in '\(pushPrivateKeyFilePath)' -out '\(pemFilePath)' -nodes -passin 'pass:\(privateKeyFilePassword)'"
         
-        print(command)
+        print("execute command:\n\(command)")
         
         do {
             try ExecuteCommand(command: command)
@@ -177,17 +173,9 @@ curl -v \
         }
     }
     
-    private func setupError(_ message: String, _ title: String = "Fail") {
-        self.title = title
-        self.successMessage = ""
-        self.errorMessage = message
-        self.isShowAlter = true
-    }
-    
-    private func setupSuccess(_ message: String, _ title: String = "Success") {
-        self.title = title
-        self.successMessage = message
-        self.errorMessage = ""
+    private func setupAlert(title: String, message: String) {
+        self.alertTitle = title
+        self.alertMessage = message
         self.isShowAlter = true
     }
     
