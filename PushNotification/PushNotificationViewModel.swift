@@ -116,27 +116,27 @@ class PushNotificationViewModel: ObservableObject {
          https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/generating_a_remote_notification
          */
         
-        let command =
-"""
-curl -v \
---header "apns-topic: \(topic)" \
---header "apns-push-type: alert" \
---cert "\(pushCertificateFilePath)" \
---cert-type DER \
---key "\(pemFilePath)" \
---key-type PEM \
---data '{"aps":{"alert":"\(content)"}}' \
---http2 "https://\(APNSHostName)/3/device/\(deviceToken)"
-"""
+        let command = """
+            curl -v \
+            --header "apns-topic: \(topic)" \
+            --header "apns-push-type: alert" \
+            --cert "\(pushCertificateFilePath)" \
+            --cert-type DER \
+            --key "\(pemFilePath)" \
+            --key-type PEM \
+            --data '{"aps":{"alert":"\(content)"}}' \
+            --http2 "https://\(APNSHostName)/3/device/\(deviceToken)"
+            """
         print("execute command:\n\(command)\n")
-        
-        do {
-            try ExecuteCommand(command: command)
-            self.setupAlert(title: "Success", message: "Send Notification Success")
-        } catch let error as ShellError {
-            self.setupAlert(title: "Fail", message: error.message)
-        } catch {
-            self.setupAlert(title: "Fail", message: error.localizedDescription)
+        DispatchQueue.main.async {
+            do {
+                try ExecuteCommand(command: command)
+                self.setupAlert(title: "Success", message: "Send Notification Success")
+            } catch let error as ShellError {
+                self.setupAlert(title: "Fail", message: error.message)
+            } catch {
+                self.setupAlert(title: "Fail", message: error.localizedDescription)
+            }
         }
     }
     
@@ -153,9 +153,11 @@ curl -v \
         do {
             try ExecuteCommand(command: command)
         } catch let error as ShellError {
+            removeFileIfNeed(pemFilePath)
             completion(nil, error.message)
             return
         } catch {
+            removeFileIfNeed(pemFilePath)
             completion(nil, error.localizedDescription)
             return
         }
@@ -166,8 +168,12 @@ curl -v \
     }
     
     private func removeFileIfNeed(_ file: String) {
+        print("try to remove file: \(file)")
         if FileManager.default.fileExists(atPath: file) {
             try? FileManager.default.removeItem(atPath: file)
+            print("remove success")
+        } else {
+            print("file not exist at: \(file)")
         }
     }
     
