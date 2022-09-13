@@ -153,11 +153,9 @@ curl -v \
         do {
             try ExecuteCommand(command: command)
         } catch let error as ShellError {
-            removeFileIfNeed(pemFilePath)
             completion(nil, error.message)
             return
         } catch {
-            removeFileIfNeed(pemFilePath)
             completion(nil, error.localizedDescription)
             return
         }

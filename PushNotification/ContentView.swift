@@ -26,7 +26,7 @@ struct ContentView: View {
         }
         .padding()
         .frame(minWidth: 350, minHeight: 280)
-        .alert(viewModel.alertTitle, isPresented: $viewModel.isShowAlter, actions: {
+        .alert(Text(viewModel.alertTitle), isPresented: $viewModel.isShowAlter, actions: {
             Button {
                 viewModel.reset()
             } label: {
@@ -44,7 +44,7 @@ extension ContentView {
     
     var certificateRow: some View {
         HStack {
-            TextField(text: $viewModel.pushCertificateFilePath, prompt: Text("Please select a push certificate file")) {
+            TextField(text: $viewModel.pushCertificateFilePath, prompt: Text("Certificate placeholder")) {
                 Text("Certificate:")
                     .foregroundColor(viewModel.certificateForegroundColor)
             }
@@ -58,7 +58,7 @@ extension ContentView {
     
     var privateKeyRow: some View {
         HStack {
-            TextField(text: $viewModel.pushPrivateKeyFilePath, prompt: Text("Please select a push private key file")) {
+            TextField(text: $viewModel.pushPrivateKeyFilePath, prompt: Text("Private key placeholder")) {
                 Text("Private Key:")
                     .foregroundColor(viewModel.privateKeyForegroundColor)
             }
@@ -74,7 +74,7 @@ extension ContentView {
     var privateKeyPasswordRow: some View {
         if viewModel.pushPrivateKeyFilePath.isEmpty == false {
             HStack {
-                TextField(text: $viewModel.privateKeyFilePassword, prompt: Text("Input the password for the private key file, if no password keep empty.")) {
+                TextField(text: $viewModel.privateKeyFilePassword, prompt: Text("Password placeholder")) {
                     Text("Password:")
                         .foregroundColor(.purple)
                 }
@@ -85,7 +85,7 @@ extension ContentView {
     
     var topicRow: some View {
         HStack {
-            TextField(text: $viewModel.topic, prompt: Text("Please input the bunle id")) {
+            TextField(text: $viewModel.topic, prompt: Text("Topic placeholder")) {
                 Text("Topic:")
             }
             placeholderButton
@@ -94,7 +94,7 @@ extension ContentView {
     
     var deviceTokenRow: some View {
         HStack {
-            TextField(text: $viewModel.deviceToken, prompt: Text("Please input the device token")) {
+            TextField(text: $viewModel.deviceToken, prompt: Text("Device Token placeholder")) {
                 Text("Device Token:")
             }
             placeholderButton
@@ -103,7 +103,7 @@ extension ContentView {
     
     var contentRow: some View {
         HStack {
-            TextField(text: $viewModel.content, prompt: Text("Please input the notification content")) {
+            TextField(text: $viewModel.content, prompt: Text("Content placeholder")) {
                 Text("Content:")
             }
             placeholderButton
@@ -147,5 +147,9 @@ extension ContentView {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environment(\.locale, .init(identifier: "en"))
+        
+        ContentView()
+            .environment(\.locale, .init(identifier: "zh-Hans"))
     }
 }

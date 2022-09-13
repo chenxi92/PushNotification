@@ -14,6 +14,7 @@
 		6C7A866928CAE1F00037EA36 /* PushNotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7A866828CAE1F00037EA36 /* PushNotificationViewModel.swift */; };
 		6C7A866B28CB17DF0037EA36 /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7A866A28CB17DF0037EA36 /* CustomButtonStyle.swift */; };
 		6C7A866D28CB18C90037EA36 /* Shell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7A866C28CB18C90037EA36 /* Shell.swift */; };
+		6CBF65BB28D0293D007A760C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6CBF65BD28D0293D007A760C /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		6C7A866828CAE1F00037EA36 /* PushNotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationViewModel.swift; sourceTree = "<group>"; };
 		6C7A866A28CB17DF0037EA36 /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
 		6C7A866C28CB18C90037EA36 /* Shell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shell.swift; sourceTree = "<group>"; };
+		6CBF65BC28D0293D007A760C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6CBF65BF28D02AAD007A760C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,7 @@
 		6C7A865828CAE1660037EA36 /* PushNotification */ = {
 			isa = PBXGroup;
 			children = (
+				6CBF65B628D02827007A760C /* Localizable */,
 				6C7A865928CAE1660037EA36 /* PushNotificationApp.swift */,
 				6C7A865B28CAE1660037EA36 /* ContentView.swift */,
 				6C7A866828CAE1F00037EA36 /* PushNotificationViewModel.swift */,
@@ -76,6 +80,14 @@
 				6C7A866028CAE1680037EA36 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		6CBF65B628D02827007A760C /* Localizable */ = {
+			isa = PBXGroup;
+			children = (
+				6CBF65BD28D0293D007A760C /* Localizable.strings */,
+			);
+			path = Localizable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,6 +132,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 6C7A864D28CAE1660037EA36;
 			productRefGroup = 6C7A865728CAE1660037EA36 /* Products */;
@@ -137,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C7A866128CAE1680037EA36 /* Preview Assets.xcassets in Resources */,
+				6CBF65BB28D0293D007A760C /* Localizable.strings in Resources */,
 				6C7A865E28CAE1680037EA36 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -157,6 +171,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		6CBF65BD28D0293D007A760C /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6CBF65BC28D0293D007A760C /* en */,
+				6CBF65BF28D02AAD007A760C /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		6C7A866328CAE1680037EA36 /* Debug */ = {

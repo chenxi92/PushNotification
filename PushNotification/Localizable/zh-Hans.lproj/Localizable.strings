@@ -1,0 +1,27 @@
+/** Confirm Button in Alert View*/
+"Confirm" = "确定";
+
+"Certificate:" = "证书:";
+"Certificate placeholder" = "请选择 cer 推送证书";
+"Select" = "选择";
+
+"Private Key:" = "私钥:";
+"Private key placeholder" = "请选择 p12 文件";
+
+"Password:" = "密码:";
+"Password placeholder" = "请输入 p12 文件密码";
+
+"Topic:" = "包名:";
+"Topic placeholder" = "请输入包名";
+
+"Device Token:" = "设备ID:";
+"Device Token placeholder" = "请输入设备ID";
+
+"Content:" = "内容:";
+"Content placeholder" = "请输入推送内容";
+
+"Send Notification" = "发送";
+
+"Success" = "成功";
+"Fail" = "失败";
+"Send Notification Success" = "推送成功";

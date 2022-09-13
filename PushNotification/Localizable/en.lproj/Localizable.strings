@@ -1,0 +1,27 @@
+/** Confirm Button in Alert View*/
+"Confirm" = "Confirm";
+
+"Certificate:" = "Certificate:";
+"Certificate placeholder" = "Please select a push certificate file";
+"Select" = "Select";
+
+"Private Key:" = "Private Key:";
+"Private key placeholder" = "Please select a push private key file";
+
+"Password:" = "Password:";
+"Password placeholder" = "Input the password for the private key file, if no password keep empty.";
+
+"Topic:" = "Topic:";
+"Topic placeholder" = "Please input the bunle id";
+
+"Device Token:" = "Device Token:";
+"Device Token placeholder" = "Please input the device token";
+
+"Content:" = "Content:";
+"Content placeholder" = "Please input the notification content";
+
+"Send Notification" = "Send Notification";
+
+"Success" = "Success";
+"Fail" = "Fail";
+"Send Notification Success" = "Send Notification Success";
