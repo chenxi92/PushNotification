@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var viewModel = PushNotificationViewModel()
+    // Use StateObject wrapper since we don't want to re-initialize the view model.
+    @StateObject var viewModel = PushNotificationViewModel()
     
     var body: some View {
         VStack {

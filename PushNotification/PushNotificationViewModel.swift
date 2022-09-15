@@ -168,6 +168,8 @@ class PushNotificationViewModel: ObservableObject {
     }
     
     private func removeFileIfNeed(_ file: String) {
+        guard !file.isEmpty else { return }
+        
         print("try to remove file: \(file)")
         if FileManager.default.fileExists(atPath: file) {
             try? FileManager.default.removeItem(atPath: file)
