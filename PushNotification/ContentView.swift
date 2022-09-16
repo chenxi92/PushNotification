@@ -26,7 +26,7 @@ struct ContentView: View {
             }
         }
         .padding()
-        .frame(minWidth: 350, minHeight: 280)
+        .frame(minWidth: 350, minHeight: 370)
         .alert(Text(viewModel.alertTitle), isPresented: $viewModel.isShowAlter, actions: {
             Button {
                 viewModel.reset()
@@ -104,9 +104,7 @@ extension ContentView {
     
     var contentRow: some View {
         HStack {
-            TextField(text: $viewModel.content, prompt: Text("Content placeholder")) {
-                Text("Content:")
-            }
+            NotificationConfigurationView()
             placeholderButton
         }
     }
@@ -134,7 +132,17 @@ extension ContentView {
             Button {
                 viewModel.sendNotification()
             } label: {
-                Text("Send Notification")
+                HStack {
+                    if viewModel.isSending {
+                        ProgressView()
+                            .colorInvert()
+                            .brightness(1)
+                            .scaleEffect(0.75)
+                            .padding(.horizontal)
+                    }
+            
+                    Text("Send Notification")
+                }
             }
             .buttonStyle(CustomButtonStyle())
             .disabled(!viewModel.isReady)

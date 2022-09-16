@@ -15,9 +15,10 @@ class PushNotificationViewModel: ObservableObject {
     @Published var privateKeyFilePassword: String = ""
     @AppStorage("push_topic") var topic: String = ""
     @AppStorage("push_device") var deviceToken: String = ""
-    @Published var content: String = ""
+    /// The content of the notification
+    @Published var aps: APS = .init()
     @Published var isSandbox: Bool = true
-    
+    @Published var isSending: Bool = false
     @Published var isShowAlter: Bool = false
     private(set) var alertTitle: String = ""
     private(set) var alertMessage: String = ""
@@ -45,7 +46,7 @@ class PushNotificationViewModel: ObservableObject {
     }
     
     var isReady: Bool {
-        if pushCertificateFilePath.isEmpty || pushPrivateKeyFilePath.isEmpty || topic.isEmpty || deviceToken.isEmpty || content.isEmpty {
+        if pushCertificateFilePath.isEmpty || pushPrivateKeyFilePath.isEmpty || topic.isEmpty || deviceToken.isEmpty || aps.isEmpty {
             return false
         }
         if !FileManager.default.fileExists(atPath: pushCertificateFilePath) || !FileManager.default.fileExists(atPath: pushPrivateKeyFilePath) {
@@ -67,25 +68,22 @@ class PushNotificationViewModel: ObservableObject {
     }
     
     func sendNotification() {
-        print("\nBegin send notification ...\ncertificate = \(pushCertificateFilePath)\nprivate key = \(pushPrivateKeyFilePath)")
-     
-        if pemFilePath.isEmpty {
-            convertP12toPem { [weak self] pemFilePath, errorMessage in
-                guard let self = self else { return }
-                
-                if let errorMessage = errorMessage {
-                    print("convert p12 file to pem occur error: \(errorMessage)")
-                    self.setupAlert(title: "Convert p12 file Fail", message: errorMessage)
+        guard !isSending else { return }
+        
+        print("\nBegin send notification ...\ncertificate = \(pushCertificateFilePath)\nprivate key = \(pushPrivateKeyFilePath)\ncontent = \(aps.toJson())")
+        
+        DispatchQueue(label: "send-notification").async {
+            // check pem file where exist
+            if self.pemFilePath.isEmpty {
+                // convert p12 to pem occur some fail
+                if self.convertP12toPem() == false  {
                     return
                 }
-                
-                if let pemFilePath = pemFilePath {
-                    self.pemFilePath = pemFilePath
-                    self.sendNotification(self.content, pemFilePath)
-                }
             }
-        } else {
-            sendNotification(content, pemFilePath)
+            // send notificatio directly
+            self.setupSendingStatus(true)
+            self.sendNotification(self.aps.toJson(), self.pemFilePath)
+            self.setupSendingStatus(false)
         }
     }
     
@@ -110,7 +108,7 @@ class PushNotificationViewModel: ObservableObject {
         }
     }
     
-    private func sendNotification(_ content: String, _ pemFilePath: String) {
+    private func sendNotification(_ apsContent: String, _ pemFilePath: String) {
         /**
          How to generate a remote notification:
          https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/generating_a_remote_notification
@@ -124,47 +122,46 @@ class PushNotificationViewModel: ObservableObject {
             --cert-type DER \
             --key "\(pemFilePath)" \
             --key-type PEM \
-            --data '{"aps":{"alert":"\(content)"}}' \
+            --data '{"aps": \(apsContent) }' \
             --http2 "https://\(APNSHostName)/3/device/\(deviceToken)"
             """
         print("execute command:\n\(command)\n")
-        DispatchQueue.main.async {
-            do {
-                try ExecuteCommand(command: command)
-                self.setupAlert(title: "Success", message: "Send Notification Success")
-            } catch let error as ShellError {
-                self.setupAlert(title: "Fail", message: error.message)
-            } catch {
-                self.setupAlert(title: "Fail", message: error.localizedDescription)
-            }
+        do {
+            try ExecuteCommand(command: command)
+            self.setupAlertstatus(title: "Success", message: "Send Notification Success")
+        } catch let error as ShellError {
+            self.setupAlertstatus(title: "Fail", message: error.message)
+        } catch {
+            self.setupAlertstatus(title: "Fail", message: error.localizedDescription)
         }
     }
     
-    private func convertP12toPem(completion: @escaping (_ pemFilePath: String?, _ errorMessage: String?) -> Void) {
+    private func convertP12toPem() -> Bool {
         let privateKeyFileURL = URL(fileURLWithPath: pushPrivateKeyFilePath)
         let workDirectory = privateKeyFileURL.deletingLastPathComponent().path
         let fileName = privateKeyFileURL.fileName() + "-" + String(Int.random(in: 1...1000)) + ".pem"
         let pemFilePath = workDirectory + "/" + fileName
         
         let command = "openssl pkcs12 -in '\(pushPrivateKeyFilePath)' -out '\(pemFilePath)' -nodes -passin 'pass:\(privateKeyFilePassword)'"
-        
         print("execute command:\n\(command)")
         
+        var errorMessage = ""
         do {
             try ExecuteCommand(command: command)
         } catch let error as ShellError {
-            removeFileIfNeed(pemFilePath)
-            completion(nil, error.message)
-            return
+            errorMessage = error.message
         } catch {
-            removeFileIfNeed(pemFilePath)
-            completion(nil, error.localizedDescription)
-            return
+            errorMessage = error.localizedDescription
         }
         
-        assert(FileManager.default.fileExists(atPath: pemFilePath))
-        
-        completion(pemFilePath, nil)
+        if !errorMessage.isEmpty {
+            removeFileIfNeed(pemFilePath)
+            setupAlertstatus(title: "Convert p12 file Fail", message: errorMessage)
+            return false
+        } else {
+            self.pemFilePath = pemFilePath
+            return true
+        }
     }
     
     private func removeFileIfNeed(_ file: String) {
@@ -179,10 +176,18 @@ class PushNotificationViewModel: ObservableObject {
         }
     }
     
-    private func setupAlert(title: String, message: String) {
-        self.alertTitle = title
-        self.alertMessage = message
-        self.isShowAlter = true
+    private func setupAlertstatus(title: String, message: String) {
+        DispatchQueue.main.async {
+            self.alertTitle = title
+            self.alertMessage = message
+            self.isShowAlter = true
+        }
+    }
+    
+    private func setupSendingStatus(_ sending: Bool) {
+        DispatchQueue.main.async {
+            self.isSending = sending
+        }
     }
     
     private var APNSHostName: String {

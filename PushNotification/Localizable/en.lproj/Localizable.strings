@@ -25,3 +25,11 @@
 "Success" = "Success";
 "Fail" = "Fail";
 "Send Notification Success" = "Send Notification Success";
+
+"Notification Title" = "Title";
+"Notification Subtitle" = "Subtitle";
+"Notification Body" = "Body";
+"Notification Badge" = "Badge";
+"Notification Title Placeholder" = "Input the title of the notification";
+"Notification Subtitle Placeholder" = "Input the title of the notification";
+"Notification Body Placeholder" = "Input the title of the notification";

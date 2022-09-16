@@ -25,3 +25,12 @@
 "Success" = "成功";
 "Fail" = "失败";
 "Send Notification Success" = "推送成功";
+
+
+"Notification Title" = "推送标题";
+"Notification Subtitle" = "推送副标题";
+"Notification Body" = "推送内容";
+"Notification Badge" = "推送角标";
+"Notification Title Placeholder" = "请输入推送标题";
+"Notification Subtitle Placeholder" = "请输入推送副标题";
+"Notification Body Placeholder" = "请输入推送内容";
