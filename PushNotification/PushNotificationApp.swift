@@ -11,9 +11,13 @@ import SwiftUI
 struct PushNotificationApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
+    @StateObject var settingViewModel = SettingViewModel()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(settingViewModel)
+                .environment(\.locale, .init(identifier: settingViewModel.language.rawValue))
         }
         .commands {
             CommandGroup(replacing: .appInfo) {
@@ -23,6 +27,12 @@ struct PushNotificationApp: App {
                     Text("About \(Bundle.main.appName)")
                 }
             }
+        }
+        
+        Settings {
+            SettingView()
+                .environmentObject(settingViewModel)
+                .environment(\.locale, .init(identifier: settingViewModel.language.rawValue))
         }
     }
 }

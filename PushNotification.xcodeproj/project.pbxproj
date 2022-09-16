@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C5BF78628D476CF0079B378 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5BF78528D476CF0079B378 /* SettingViewModel.swift */; };
 		6C7A865A28CAE1660037EA36 /* PushNotificationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7A865928CAE1660037EA36 /* PushNotificationApp.swift */; };
 		6C7A865C28CAE1660037EA36 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7A865B28CAE1660037EA36 /* ContentView.swift */; };
 		6C7A865E28CAE1680037EA36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C7A865D28CAE1680037EA36 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 		6CA0B9A928D424320091ED98 /* NotificationConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA0B9A828D424320091ED98 /* NotificationConfigurationView.swift */; };
 		6CA0B9AC28D428420091ED98 /* APS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA0B9AB28D428420091ED98 /* APS.swift */; };
 		6CA0B9AE28D431590091ED98 /* Encodable-json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA0B9AD28D431590091ED98 /* Encodable-json.swift */; };
+		6CA0B9B028D46E990091ED98 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA0B9AF28D46E990091ED98 /* SettingView.swift */; };
 		6CBF65BB28D0293D007A760C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6CBF65BD28D0293D007A760C /* Localizable.strings */; };
 		6CBF65C228D036E4007A760C /* AboutMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF65C128D036E4007A760C /* AboutMeView.swift */; };
 		6CBF65C428D05408007A760C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF65C328D05408007A760C /* AppDelegate.swift */; };
@@ -25,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6C5BF78528D476CF0079B378 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		6C7A865628CAE1660037EA36 /* PushNotification.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PushNotification.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C7A865928CAE1660037EA36 /* PushNotificationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationApp.swift; sourceTree = "<group>"; };
 		6C7A865B28CAE1660037EA36 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -37,6 +40,7 @@
 		6CA0B9A828D424320091ED98 /* NotificationConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationConfigurationView.swift; sourceTree = "<group>"; };
 		6CA0B9AB28D428420091ED98 /* APS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APS.swift; sourceTree = "<group>"; };
 		6CA0B9AD28D431590091ED98 /* Encodable-json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable-json.swift"; sourceTree = "<group>"; };
+		6CA0B9AF28D46E990091ED98 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		6CBF65BC28D0293D007A760C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6CBF65BF28D02AAD007A760C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		6CBF65C128D036E4007A760C /* AboutMeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeView.swift; sourceTree = "<group>"; };
@@ -56,6 +60,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C5BF78428D476BF0079B378 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				6C5BF78528D476CF0079B378 /* SettingViewModel.swift */,
+				6C7A866828CAE1F00037EA36 /* PushNotificationViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		6C7A864D28CAE1660037EA36 = {
 			isa = PBXGroup;
 			children = (
@@ -75,14 +88,14 @@
 		6C7A865828CAE1660037EA36 /* PushNotification */ = {
 			isa = PBXGroup;
 			children = (
+				6C7A865928CAE1660037EA36 /* PushNotificationApp.swift */,
+				6C7A865B28CAE1660037EA36 /* ContentView.swift */,
+				6C5BF78428D476BF0079B378 /* ViewModels */,
 				6CA0B9AA28D428320091ED98 /* Model */,
 				6CBF65B628D02827007A760C /* Localizable */,
 				6CBF65C528D05428007A760C /* Extensions */,
 				6CBF65C028D036C3007A760C /* Views */,
-				6C7A865928CAE1660037EA36 /* PushNotificationApp.swift */,
 				6CBF65C328D05408007A760C /* AppDelegate.swift */,
-				6C7A865B28CAE1660037EA36 /* ContentView.swift */,
-				6C7A866828CAE1F00037EA36 /* PushNotificationViewModel.swift */,
 				6C7A866A28CB17DF0037EA36 /* CustomButtonStyle.swift */,
 				6C7A866C28CB18C90037EA36 /* Shell.swift */,
 				6C7A865D28CAE1680037EA36 /* Assets.xcassets */,
@@ -121,6 +134,7 @@
 			children = (
 				6CBF65C128D036E4007A760C /* AboutMeView.swift */,
 				6CA0B9A828D424320091ED98 /* NotificationConfigurationView.swift */,
+				6CA0B9AF28D46E990091ED98 /* SettingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -208,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CBF65C728D05443007A760C /* Bundle-info.swift in Sources */,
+				6C5BF78628D476CF0079B378 /* SettingViewModel.swift in Sources */,
 				6CBF65C228D036E4007A760C /* AboutMeView.swift in Sources */,
 				6CA0B9AE28D431590091ED98 /* Encodable-json.swift in Sources */,
 				6CA0B9AC28D428420091ED98 /* APS.swift in Sources */,
@@ -215,6 +230,7 @@
 				6C7A866928CAE1F00037EA36 /* PushNotificationViewModel.swift in Sources */,
 				6C7A865C28CAE1660037EA36 /* ContentView.swift in Sources */,
 				6C7A866D28CB18C90037EA36 /* Shell.swift in Sources */,
+				6CA0B9B028D46E990091ED98 /* SettingView.swift in Sources */,
 				6CBF65C928D0557B007A760C /* URL-file.swift in Sources */,
 				6CBF65C428D05408007A760C /* AppDelegate.swift in Sources */,
 				6C7A866B28CB17DF0037EA36 /* CustomButtonStyle.swift in Sources */,
@@ -366,7 +382,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = PushNotification;
+				INFOPLIST_FILE = PushNotification/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Peak. All rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -395,7 +411,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = PushNotification;
+				INFOPLIST_FILE = PushNotification/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Peak. All rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
